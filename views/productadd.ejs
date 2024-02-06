@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 70%;
+  
+
+  
+}
+</style>
+</head>
+<body>
+
+<h3>Product Adding </h3>
+
+<div class="container">
+  <form action="/productadd" method="post" enctype="multipart/form-data">
+    <label for="productname">product Name</label>
+    <input type="text" id="name" name="productname" placeholder="product name..">
+
+    <label for="price">price</label><br>
+    <input type="number" id="price" name="price" placeholder="product price"><br><br>
+
+    <label for="offerprice">offer_price</label><br>
+    <input type="number" id="price" name="offerprice" placeholder="offer price"><br><br>
+
+
+    <label for="stock">stock</label><br>
+    <input type="number" id="stock" name="stock" placeholder="product quantity"><br><br>
+
+    <label for="category">category</label>
+    <select id="category" name="category">
+      <option value="fation">fation</option>
+      <option value="electronics">electronics</option>
+      <option value="foods">foods</option>
+    </select>
+
+    <label for="discription">discription</label>
+    <textarea id="discription" name="discription" placeholder="Write discription.." ></textarea>
+
+    <label for="image">product image</label>
+    <input type="file" id="image" name="image[]" multiple><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>
