@@ -1,0 +1,23 @@
+[33mcommit 8dfa0d3850273b0a65d18285f9f9c625d5799480[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: shijo <shijops110@gmail.com>
+Date:   Sat Feb 17 10:46:16 2024 +0530
+
+    category get and post  done
+
+[33mcommit 989dfe5d8266112c2ca269518302055d5b0a523c[m
+Author: shijo <shijops110@gmail.com>
+Date:   Sat Feb 17 10:42:31 2024 +0530
+
+    mobile number otp , email otp send and verification is done
+
+[33mcommit 7e978ddb70832fdd92b83496dc6e41bb63865695[m
+Author: shijo <shijops110@gmail.com>
+Date:   Sat Feb 17 10:39:45 2024 +0530
+
+    login,signup,complit
+
+[33mcommit d1e6c56bb3deee15e027da41736e79c9a44a4153[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: shijo <shijops110@gmail.com>
+Date:   Tue Feb 6 11:24:03 2024 +0530
+
+    signup completed

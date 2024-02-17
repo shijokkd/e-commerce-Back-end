@@ -67,112 +67,112 @@ module.exports = {
 
 
 
-//     productAddGet:async(req,res)=>{
-//         const category = await categorymodel.find()
-//         try{
+    productAddGet:async(req,res)=>{
+        const category = await categorymodel.find()
+        try{
 
-//             res.render('productadd',{category})
-//         }catch{
-//             console.log(error);
-//             res.status(500).json({ error: 'Internal Server Error for the category model' });
+            res.render('productadd',{category})
+        }catch{
+            console.log(error);
+            res.status(500).json({ error: 'Internal Server Error for the category model' });
 
-//         }
+        }
 
-//     },
+    },
 
   
-//  productAddPost :    async (req, res) => {
-//     console.log(req.body);
-//     const { productname, price, offerprice, stock, category, discription } = req.body;
+ productAddPost :    async (req, res) => {
+    console.log(req.body);
+    const { productname, price, offerprice, stock, category, discription } = req.body;
 
-//     try {
+    try {
         
-//         const imagepath = req.files ? req.files.map(file => file.filename) : [];
+        const imagepath = req.files ? req.files.map(file => file.filename) : [];
 
-//         console.log(req.file);
+        console.log(req.file);
 
-//         if (!productname || !price || !stock || !category || !discription) {
-//             res.render("productadd");
-//         } else {
-//             console.log(req.body);
+        if (!productname || !price || !stock || !category || !discription) {
+            res.render("productadd");
+        } else {
+            console.log(req.body);
 
-//             const data  = new productmodel({
-//                 productname: productname,
-//                 price: price,
-//                 offerprice: offerprice,
-//                 discription: discription,
-//                 stock: stock,
-//                 category: category,
-//                 imagepath: imagepath
-//             })
+            const data  = new productmodel({
+                productname: productname,
+                price: price,
+                offerprice: offerprice,
+                discription: discription,
+                stock: stock,
+                category: category,
+                imagepath: imagepath
+            })
 
-//         await data.save() 
+        await data.save() 
 
-//             res.status(200).json({ success: true, message: 'Product added successfully' });
-//         }
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// },
-
-
+            res.status(200).json({ success: true, message: 'Product added successfully' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+},
 
 
 
-//     adminHOMEGET:(req,res)=>{
-//         res.render('users')
-//     },
-
-//     productGet : async (req,res)=>{
-//         const products = await productmodel.find()
-//         try{
-
-//             res.render('product',{products}) 
-//         }catch (erorr){
-//             console.log(erorr)
-
-//         }
-//     },
-//     productEditGet : async (req,res)=>{
-//         try{ 
-//             const id = req.params.productid
-//             const idproduct = await productmodel.findById(id)
-
-//             res.render('productedit',{idproduct})
 
 
-//         }catch{
+    adminHOMEGET:(req,res)=>{
+        res.render('users')
+    },
 
-//         }
-//     },
-//     productDeletePost : async (req,res)=>{
-//         try{
+    productGet : async (req,res)=>{
+        const products = await productmodel.find()
+        try{
+
+            res.render('product',{products}) 
+        }catch (erorr){
+            console.log(erorr)
+
+        }
+    },
+    productEditGet : async (req,res)=>{
+        try{ 
+            const id = req.params.productid
+            const idproduct = await productmodel.findById(id)
+
+            res.render('productedit',{idproduct})
+
+
+        }catch{
+
+        }
+    },
+    productDeletePost : async (req,res)=>{
+        try{
             
-//             const id = req.query.id
-//             const product = await productmodel.findByIdAndDelete(id)
+            const id = req.query.id
+            const product = await productmodel.findByIdAndDelete(id)
 
 
-//             if(product){
-//                 res.status(200).json({message:"deleted"})
-//             }
-//             else{
-//                 res.status(404).json({message:"not found"})
-//             }
+            if(product){
+                res.status(200).json({message:"deleted"})
+            }
+            else{
+                res.status(404).json({message:"not found"})
+            }
 
-//         }catch{
-//             res.status(400).json({message:"product delete notworking in project"})
+        }catch{
+            res.status(400).json({message:"product delete notworking in project"})
 
-//         }
-//     },
-//     productEditGet:async (req,res)=>{
-//          try{
-//             res.render("productedit")
+        }
+    },
+    productEditGet:async (req,res)=>{
+         try{
+            res.render("productedit")
 
-//          }catch{
+         }catch{
 
-//          }
-//     }
+         }
+    }
 
 
 
