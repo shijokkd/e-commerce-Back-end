@@ -18,7 +18,9 @@ const {
     enterpasswordPOST, 
 
 
-} = require('../controllers/userController');
+} = require('../controllers/authController');
+
+
 
 
 

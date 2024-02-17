@@ -4,16 +4,15 @@ const mongoose = require('mongoose');
 
 const otpschema  = new mongoose.Schema({
     category : {
-        type:String,
-        require:true
+        type:String
+    
     },
     subcategory : {
-        type:[String],
-        require:true
+        type:[String]
+        
     },
     imagepath : {
-        type:String,
-        require:true
+        type:String
     },
 })
 

@@ -554,6 +554,13 @@ b {
 .menu-aside .menu-item.active .submenu a.active {
   color: #3BB77E !important;
 }
+/* ///////////////////////////////////////////////////////////////  for me */
+.menu-item{          
+background-color:   #00ff99; 
+border-radius:30px;
+
+
+}
 
 .menu-aside .menu-link {
   padding: 10px;

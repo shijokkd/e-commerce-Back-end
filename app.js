@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost:27017/adminpage').then(()=> {console.log('connected');}).catch(()=> console.log('error'))
@@ -7,6 +8,9 @@ mongoose.connect('mongodb://localhost:27017/adminpage').then(()=> {console.log('
 const multer = require('multer');
 
 require('dotenv').config()
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true})) 

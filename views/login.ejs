@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login page</title>
-    <link rel="stylesheet" href="/css/login.css">
-    
+  <meta charset="utf-8">
+  <title>RegistrationForm_v2 by Colorlib</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="robots" content="noindex, follow">
 </head>
+
 <body>
-
-    <form action="/login " method="post">
-       <div class="main">
-        <div class="head1"><h2><B>Login Page</B></h2></div><hr>
-        <div class="email1"><label for="email">username</label><br><input type="email" name="email" id=""></div>
-        <div class="password1"><label for="password">password</label><br><input type="password" name="password" id=""></div>
-        <div class="submit1"><input type="submit" value="login"></div>
-        <div class="register1"> <a href="/signup">register new user?</a></div>
-        <div class="register1"> <a href="/forgotpassword">forgotpassword</a></div>
-       </div>
-       
-
-    </form>
-    <div class="headding"><h3>welcome to</h3><br><h1> D cart</h1></div>
+  <div class="wrapper" style="background-image: url('/image/bg-registration-form-2.jpg');">
+    <div class="inner">
+      <form action="/login" id="registrationForm" method="post">
+        <h3>login Form <h3>Dcart</h3></h3>
+        <div class="form-group">
+          
+          
+        </div>
+        <div class="form-wrapper">
+          <label for="email" id="emailError">Email</label>
+          <input type="email" class="form-control" id="email"  name="email">
+          <div class="error-message" id="emailError"></div>
+        </div>
+        
+        <div class="form-wrapper">
+          <label for="password" id="passwordError">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+          <div class="error-message" id="passwordError"></div>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" required> I accept the Terms of Use & Privacy Policy.
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <button type="submit">login now</button>
+        <div class="form-wrapper">
+            <a href="/forgotpassword">forgotpassword</a>
+        </div>
+        <div class="form-wrapper">
+            <a href="/signup">register new user?</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

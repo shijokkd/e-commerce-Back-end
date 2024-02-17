@@ -2,7 +2,7 @@ const mongoose = require ("mongoose");
 
 
 const productschema = new mongoose.Schema({
-    name : {
+    productname : {
         type :String,
         require:true
     },
@@ -26,11 +26,15 @@ const productschema = new mongoose.Schema({
         type:String,
         require:true
     },
+    subcategory:{
+        type :String
+    
+    },
     imagepath:{
-        type:String,
-        require:true
+        type:Array,
+        
     }
 
 })
 
-module.exports = mongoose.model('product',productschema)
+module.exports = mongoose.model('products',productschema)

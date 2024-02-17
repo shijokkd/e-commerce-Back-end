@@ -41,41 +41,73 @@ input[type=submit]:hover {
 }
 </style>
 </head>
+
 <body>
 
-<h3>Product Adding </h3>
+  <h3>Product Adding</h3>
+  
+  <div class="container">
+    <form action="/admin/productsadd" method="post" enctype="multipart/form-data">
+      <label for="productname">Product Name</label>
+      <input type="text" id="name" name="productname" placeholder="Product name..">
+  
+      <label for="price">Price</label><br>
+      <input type="number" id="price" name="price" placeholder="Product price"><br><br>
+  
+      <label for="offerprice">Offer Price</label><br>
+      <input type="number" id="offerprice" name="offerprice" placeholder="Offer price"><br><br>
+  
+      <label for="stock">Stock</label><br>
+      <input type="number" id="stock" name="stock" placeholder="Product quantity"><br><br>
+  
+      <label for="category">Category</label>
+      <select id="category" name="category" onblur="">
+        <% category.forEach(cat => { %>
+          <option value="category"><%= cat.category %></option>
+        <% }); %>
+      </select>
+  
+      <label for="subcategory">Subcategory</label>
+      <select id="subcategory" name="subcategory">
+        <% category.forEach(cat => { %>
+          <% cat.subcategory.forEach(subcat => { %>
+            <option value="subcategory"><%= subcat %></option>
+          <% }); %>
+        <% }); %>
+      </select>
+  
+      <label for="discription">Description</label>
+      <textarea id="discription" name="discription" placeholder="Write description.."></textarea>
+  
+      <label for="file">Product Image</label>
+      <input type="file" id="image" name="image" multiple><br>
+  
+      <input type="submit" value="Submit">
 
-<div class="container">
-  <form action="/productadd" method="post" enctype="multipart/form-data">
-    <label for="productname">product Name</label>
-    <input type="text" id="name" name="productname" placeholder="product name..">
-
-    <label for="price">price</label><br>
-    <input type="number" id="price" name="price" placeholder="product price"><br><br>
-
-    <label for="offerprice">offer_price</label><br>
-    <input type="number" id="price" name="offerprice" placeholder="offer price"><br><br>
+      
+    </form>
+  </div>
+  <script src="/js/category.js"></script>
+  
+  </body>
+  
 
 
-    <label for="stock">stock</label><br>
-    <input type="number" id="stock" name="stock" placeholder="product quantity"><br><br>
 
-    <label for="category">category</label>
-    <select id="category" name="category">
-      <option value="fation">fation</option>
-      <option value="electronics">electronics</option>
-      <option value="foods">foods</option>
-    </select>
 
-    <label for="discription">discription</label>
-    <textarea id="discription" name="discription" placeholder="Write discription.." ></textarea>
-
-    <label for="image">product image</label>
-    <input type="file" id="image" name="image[]" multiple><br>
-
-    <input type="submit" value="Submit">
-  </form>
-</div>
-
-</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

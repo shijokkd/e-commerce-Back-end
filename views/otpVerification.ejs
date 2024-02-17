@@ -1,20 +1,39 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <title>dcart otp validation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="robots" content="noindex, follow">
 </head>
+
 <body>
-    <div class="container">
-        <form action="/otpverify" method="post">
-
-        <label for="otp">Enter Your OTP</label><br>
-
-        <input type="number" name="otp"><br>
-
-        <input type="submit" value="submit">
-
-    </form></div>
+  <div class="wrapper" style="background-image: url('/image/bg-registration-form-2.jpg');">
+    <div class="inner">
+      <form action="/otpverify" id="registrationForm" method="post">
+        <h3>OTP validation Form <h3>Dcart</h3></h3>
+        <div class="form-group">
+          
+                
+        </div>
+        <div class="form-wrapper">
+          <label for="otp" >enter otp</label>
+          <input type="number" class="form-control"   name="otp">
+          <div class="error-message" id="emailError"></div>
+        </div>
+        
+       
+        <button type="submit">submit</button>
+       
+      </form>
+    </div>
+  </div>
 </body>
 </html>
+
+
+
+

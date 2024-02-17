@@ -7,18 +7,25 @@ const upload = require('../middleware/multer')
 
 const {
     adminloginGET,
-    // adminloginPOST,
-    // adminSignupGet,
-    // adminSignupPost,
     adminHOMEGET,
+    productGet,
+    // productPost,
     productAddGet,
     productAddPost,
     categoryAddGet,
     categoryAddPost,
+    productEditGet,
+    
+    productDeletePost
 
 
 
-} = require('../controllers/admincontroller')
+} = require('../controllers/productcontroller')
+
+const {
+    adminSideUserListGET,
+
+} = require('../controllers/adminController')
 
 
 
@@ -29,10 +36,15 @@ router.get( '/login',adminloginGET)
 //     .get('/signup',adminSignupGet)
 //     .post('/signup',adminSignupPost)
     .get('/home',adminHOMEGET)
-    .get('/productadd',productAddGet)
-    .post('/productadd',productAddPost)
+    .get ('/products',productGet)
+    // .post ('/products',productPost)
+    .get('/productsadd',productAddGet)
+    .get('/productedit/:productid',productEditGet)
+    .delete('/productdelete',productDeletePost)
+    .post('/productsadd',upload.array('image',6),productAddPost)
     .get('/categoryadd',categoryAddGet)
     .post('/categoryadd',upload.single('image'),categoryAddPost)
+    .get('/userlist',adminSideUserListGET)
  
          
 

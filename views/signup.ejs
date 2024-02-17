@@ -1,41 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/sign.css">
+  <meta charset="utf-8">
+  <title>RegistrationForm_v2 by Colorlib</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="robots" content="noindex, follow">
 </head>
+
 <body>
+  <div class="wrapper" style="background-image: url('/image/bg-registration-form-2.jpg');">
+    <div class="inner">
+      <form action="/signup" id="registrationForm" method="post">
+        <h3>Registration Form</h3>
+        <div class="form-group">
+          <div class="form-wrapper">
+            <label for="firstName" id="firstNameError">First Name</label>
+            <input type="text" class="form-control" id="firstName" pattern="[A-Za-z]{1,}" required name="name">
+            <div class="error-message"  ></div>
+          </div>
+          <div class="form-wrapper">
+            <label for="lastName" id="lastNameError">Last Name</label>
+            <input type="text" class="form-control" id="lastName" pattern="[A-Za-z]{1,}" name="lastname">
+            <div class="error-message" id="lastNameError"></div>
+          </div>
+        </div>
+        <div class="form-wrapper">
+          <label for="email" id="emailError">Email</label>
+          <input type="email" class="form-control" id="email" required name="email">
+          <div class="error-message" id="emailError"></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="mobileNumber" id="mobileNumberError">Mobile Number</label>
+          <input type="tel" class="form-control" id="mobileNumber"  name="mobile_number">
+          <div class="error-message" id="mobileNumberError"></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="password" id="passwordError">Password</label>
+          <input type="password" class="form-control" id="password" pattern=".{6,}" required name="password">
+          <div class="error-message" id="passwordError"></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="confirmPassword" id="confirmPasswordError">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" pattern=".{6,}" required name="confirm_password">
+          <div class="error-message" id="confirmPasswordError"></div>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" required> I accept the Terms of Use & Privacy Policy.
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <button type="submit">Register Now</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{8,}$/;
+    const nameregex = /^[A-Za-z]+$/
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+let namelab = document.getElementById("firstNameError")
+let lastnamelab = document.getElementById("lastNameError")
+let emaillab = document.getElementById("emailError")
+let phonelab =document.getElementById("mobileNumberError")
+let passlab = document.getElementById("passwordError")
+let confirmpasswordl=document.getElementById("confirmPasswordError")
+//input fields taken here
+const name1 = document.getElementById('firstName')
+const email = document.getElementById('email')
+const phone = document.getElementById('mobileNumber')
+const password =document.getElementById('password')
+const confirmpassword = document.getElementById('confirmPassword')
+email.onblur =()=>{
+if(!(emailRegex.test(email.value))){
+emaillab.textContent="invalidemail"
+emaillab.style.color="red"
+}else{
+    emaillab.innerText="Email"
+    emaillab.style.color="green"
+}
+}
+name1.onblur =()=>{
+if(!(nameregex.test(name1.value))){
+namelab.textContent="invalid Name"
+namelab.style.color="red"
+}else{
+    namelab.innerText="Name"
+    namelab.style.color="green"
+}
+}
+// phone.onblur =()=>{
+// if(!(phone.value)){
+// console.log("hi")
+// phonelab.textContent="invalid phone number"
+// phonelab.style.color="red"
+// }else{
     
-    <form action="/signup" method="post">
-    <div class="main">
-            <div class="name1">
-                <label for="name">name</label><br>
-                <input type="text" name="name" id="name" >
-            </div>
-
-            <div class="email1">
-                <label for="email">email</label><br>
-                <input type="email" name="email" id="email" >
-            </div>
-            
-            <div class="email1">
-                <label for="mobile_number">mobile_number</label><br>
-                <input type="tel" name="mobile_number" id="mobile_number" >
-            </div>
-
-            <div class="password">
-                <label for="password">password</label><br>
-                <input type="password" name="password" id="email" >
-            </div>
-            <div class="confirm_password">
-                <label for="confirm_password">confirm_password</label><br>
-                <input type="password" name="confirm_password" id="confirm_password" >
-            </div>
-            <div class="submit"><input type="submit"  id="" value="signup"></div>
-       
-        </div> 
-    </form>
+//     phonelab.style.color="green"
+// }
+// }
+password.onblur =()=>{
+if(!passwordRegex.test(password.value)){
+console.log("true")
+passlab.textContent="Password must contain @Aa1"
+passlab.style.color="red"
+}else{
+passlab.style.color="green"
+}
+}
+confirmpassword.onblur=()=>{
+if(!(password.value==confirmpassword.value)){
+console.log(password.value==confirmpassword.value)
+console.log(password.value)
+console.log(confirmpassword.value)
+confirmpasswordl.textContent="confirm password doesnt match "
+confirmpasswordl.style.color="red"
+}else{
+ console.log("hi")
+confirmpasswordl.style.color="green"
+}
+}
+</script>
 </body>
+
 </html>
