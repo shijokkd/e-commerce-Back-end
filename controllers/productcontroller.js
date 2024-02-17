@@ -25,45 +25,45 @@ module.exports = {
         }
     },
 
-//     categoryAddPost : async (req, res) => {
-//         // console.log(req.body);
+    categoryAddPost : async (req, res) => {
+        // console.log(req.body);
     
-//         try {
-//            console.log(req.body)
+        try {
+           console.log(req.body)
     
-//            const { category, subcategory } = req.body;
+           const { category, subcategory } = req.body;
            
            
-//            const categoryData = await categorymodel.findOne({ category: category });
+           const categoryData = await categorymodel.findOne({ category: category });
            
            
-//            if (!categoryData) {
-//                 const path = req.file.filename ??undefined
-//                 await categorymodel.create({
-//                     category: category,
-//                     subcategory: [subcategory], // Assuming subcategory is a string, change it if it's an array
-//                     imagepath: path 
-//                 });
+           if (!categoryData) {
+                const path = req.file.filename ??undefined
+                await categorymodel.create({
+                    category: category,
+                    subcategory: [subcategory], // Assuming subcategory is a string, change it if it's an array
+                    imagepath: path 
+                });
 
 
     
-//                 // console.log(data);
+                // console.log(data);
                        
 
-//             }
-//              else {
-//                 await categorymodel.findOneAndUpdate(
-//                     { category: category },
-//                     { $addToSet: { subcategory: subcategory } },
-//                     { new: true }
-//                 );
-//                 res.status(200).json({ success: true, message: 'Subcategory added successfully' });
-//             }
-//         } catch (error) {
-//             console.log(error);
-//             res.status(500).json({ error: 'Internal Server Error' });
-//         }
-//     },
+            }
+             else {
+                await categorymodel.findOneAndUpdate(
+                    { category: category },
+                    { $addToSet: { subcategory: subcategory } },
+                    { new: true }
+                );
+                res.status(200).json({ success: true, message: 'Subcategory added successfully' });
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
 
 
 
