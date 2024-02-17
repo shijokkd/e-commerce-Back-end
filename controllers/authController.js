@@ -99,164 +99,164 @@ module.exports = {
         res.render('otpverification');
     },
 
-    // verifyOtpPost : async(req,res)=>{
+    verifyOtpPost : async(req,res)=>{
         
-    //     try{
-    //         const { otp } = req.body
-    //         console.log(otp);
-    //         console.log(forOTP);
-    //         const otpdata = await otpmodel.findOne({ otp:otp });/////otp
-    //         console.log(otpdata);
-    //         if (!otpdata){
-    //             res.send ('you have enterderd wrong otp')
+        try{
+            const { otp } = req.body
+            console.log(otp);
+            console.log(forOTP);
+            const otpdata = await otpmodel.findOne({ otp:otp });/////otp
+            console.log(otpdata);
+            if (!otpdata){
+                res.send ('you have enterderd wrong otp')
                 
-    //             return res.status(400).json({
-    //                 success:false,
-    //                 msg:`you enterd wrong otp! `
-    //             })
-    //         }
+                return res.status(400).json({
+                    success:false,
+                    msg:`you enterd wrong otp! `
+                })
+            }
 
-    //         const isOtpExpired = await otpverifications(otp.otpexpiration);
+            const isOtpExpired = await otpverifications(otp.otpexpiration);
 
-    //         if (isOtpExpired){
-    //             res.send ('otp is expired')
+            if (isOtpExpired){
+                res.send ('otp is expired')
 
-    //             return res.status(400).json({
-    //                 success:false,
-    //                 msg:('your otp has expired!')
-    //             });
+                return res.status(400).json({
+                    success:false,
+                    msg:('your otp has expired!')
+                });
     
-    //         }
-    //             await otpmodel.updateOne({ otp }, { $unset: { otp:1, otpexpiration: 1 } });
-    //             res.redirect('/')
-    //     }
-    //     catch(erorr){
-    //         return res.status(400).json({
-    //             success:false,
-    //             msg:erorr.message
-    //         });
+            }
+                await otpmodel.updateOne({ otp }, { $unset: { otp:1, otpexpiration: 1 } });
+                res.redirect('/')
+        }
+        catch(erorr){
+            return res.status(400).json({
+                success:false,
+                msg:erorr.message
+            });
     
-    //     }
-    // },
+        }
+    },
 
 
-    // forgotpasswordGET: (req, res) => {
-    //     res.render('forgotpassword');
-    // },
+    forgotpasswordGET: (req, res) => {
+        res.render('forgotpassword');
+    },
 
 
-    // forgotpasswordPOST: async (req,res) => {
+    forgotpasswordPOST: async (req,res) => {
 
-    //     const {email} = req.body;
+        const {email} = req.body;
 
         
 
-    //     try{
+        try{
 
-    //         const signupEmail = await otpmodel.findOne({ email });
+            const signupEmail = await otpmodel.findOne({ email });
 
-    //         if(!signupEmail){
-    //             res.send ('you have enterderd wrong EMAIL')
+            if(!signupEmail){
+                res.send ('you have enterderd wrong EMAIL')
                 
-    //             return res.status(400).json({
-    //                 success:false,
-    //                 msg:`you enterd wrong EMAIL! `
+                return res.status(400).json({
+                    success:false,
+                    msg:`you enterd wrong EMAIL! `
 
                      
-    //             })
-    //         }
-    //         // else{
-    //         //     var forOTP = otpgenerator.generate(4, {
-    //         //         upperCaseAlphabets: false,
-    //         //         lowerCaseAlphabets: false,
-    //         //         specialChars: false,
-    //         //     });
+                })
+            }
+            // else{
+            //     var forOTP = otpgenerator.generate(4, {
+            //         upperCaseAlphabets: false,
+            //         lowerCaseAlphabets: false,
+            //         specialChars: false,
+            //     });
 
-    //         // }
+            // }
 
 
 
             
-    //         const userEmail = process.env.USER_EMAIL
-    //         const userPassword = process.env.USER_PASSWORD
+            const userEmail = process.env.USER_EMAIL
+            const userPassword = process.env.USER_PASSWORD
 
 
 
-    //         var transporter = nodemailer.createTransport({
-    //             service: 'gmail',
-    //             auth: {
-    //               user:  userEmail ,
-    //               pass: userPassword
-    //             }
-    //           });
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user:  userEmail ,
+                  pass: userPassword
+                }
+              });
               
-    //           var mailOptions = {
-    //             from: userEmail,
+              var mailOptions = {
+                from: userEmail,
                 
-    //             to: email, 
-    //             subject: 'Sending Email using Node.js',
-    //             text: `This is your OTP for setup your new PASSWORD :  ${forOTP}`
-    //           };
+                to: email, 
+                subject: 'Sending Email using Node.js',
+                text: `This is your OTP for setup your new PASSWORD :  ${forOTP}`
+              };
               
-    //           transporter.sendMail(mailOptions, function(error, info){
-    //             if (error) {
-    //               console.log(error+`12312456765432`);
-    //             } else {
-    //               console.log('Email sent: ' + info.response);
-    //               res.redirect('/enterotp')
-    //             }
-    //           });
-    //     }catch(erorr){
-    //         return res.status(400).json({
-    //             success:false,
-    //             msg:erorr.message
-    //         });
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error+`12312456765432`);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  res.redirect('/enterotp')
+                }
+              });
+        }catch(erorr){
+            return res.status(400).json({
+                success:false,
+                msg:erorr.message
+            });
 
-    //     }
-    // },
+        }
+    },
 
 
-    // enterotpGET: (req,res)=>{
-    //     res.render('forgotOTP')
-    // },
+    enterotpGET: (req,res)=>{
+        res.render('forgotOTP')
+    },
 
-    // enterotpPOST: (req,res)=> {
+    enterotpPOST: (req,res)=> {
 
-    //     const {otp}=req.body
-    //     console.log(otp)
-    //     console.log(forOTP)
+        const {otp}=req.body
+        console.log(otp)
+        console.log(forOTP)
         
 
         
-    //         if(otp==forOTP){
-    //             res.redirect('/enterpassword')
-    //         }
-    //         else{
-    //             res.render('forgotOTP')
-    //         }
+            if(otp==forOTP){
+                res.redirect('/enterpassword')
+            }
+            else{
+                res.render('forgotOTP')
+            }
 
        
 
-    // },
+    },
 
 
-    // enterpasswordGET: (req,res)=>{
-    //     res.render('chaingepassword')
+    enterpasswordGET: (req,res)=>{
+        res.render('chaingepassword')
 
-    // },
+    },
 
-    // enterpasswordPOST: async(req,res)=>{
-    //     try{
-    //         const{password}=req.body
+    enterpasswordPOST: async(req,res)=>{
+        try{
+            const{password}=req.body
             
 
             
 
-    //     }
-    //     catch{
+        }
+        catch{
 
-    //     }
-    // }
+        }
+    }
 
         
 
