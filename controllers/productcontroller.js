@@ -170,6 +170,8 @@ module.exports = {
             res.render("productedit")
 
          }catch{
+            res.status(404).json({message:"not found"})
+
 
          }
     }
