@@ -6,8 +6,9 @@ const otpschema  = new mongoose.Schema({
         require:true
     },
     
-    lastname : {
+    name : {
         type:String,
+        require:true
         
     },
     email : {

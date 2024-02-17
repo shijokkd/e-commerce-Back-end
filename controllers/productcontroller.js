@@ -120,9 +120,6 @@ module.exports = {
 
 
 
-    adminHOMEGET:(req,res)=>{
-        res.render('users')
-    },
 
     productGet : async (req,res)=>{
         const products = await productmodel.find()

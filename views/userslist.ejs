@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -35,9 +35,7 @@
                                                     class="table table-bordered table-hover table-striped">
                                                     <thead class="thead-dark">
                                                         <tr>
-                                                            <th scope="col">
-                                                                <center>user photo</center>
-                                                            </th>
+                                                            
                                                             <th scope="col">
                                                                 <center>name</center>
                                                             </th>
@@ -52,10 +50,26 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
+                                                    
+                                        <tbody>
+                                            <% userlist.forEach((data) => { %>
+                                                <tr class="row<%=data._id%>">                                                    
+                                                   
+                                                    
+                                                    <td><center><%= data.name %></center></td>
+                                                    <td><center><%= data.mobile_number %></center></td>
+                                                    <td><center><%= data.email %></center></td> 
+                                                    
+                                                   
+                                                    
+                                                    <!-- Add other columns as needed -->
+                                                </tr>
+                                            <% }); %>
+                                        </tbody>
 
+                                                  
 
-
-                                                    <tbody>
+                                                
 
 
 
@@ -110,4 +124,4 @@
         <script src="/assets/js/main.js?v=1.1" type="text/javascript"></script>
 </body>
 
-</html> -->
+</html> 

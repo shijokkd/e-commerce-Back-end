@@ -7,7 +7,6 @@ const upload = require('../middleware/multer')
 
 const {
     adminloginGET,
-    adminHOMEGET,
     productGet,
     // productPost,
     productAddGet,
@@ -24,6 +23,8 @@ const {
 
 const {
     adminSideUserListGET,
+    adminHOMEGET,
+    
 
 } = require('../controllers/adminController')
 
