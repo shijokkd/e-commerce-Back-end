@@ -24,5 +24,25 @@ module.exports = {
 
         }
     },
+    adminBannerGet: async(req,res)=>{
+        try{
+            res.render('banner')
+
+        }catch{
+            res.status(400).json({message:"admin side banner list not displaying"})
+
+
+        }
+    },
+    adminCouponGET: async(req,res)=>{
+        try{
+            res.render('coupons')
+
+        }catch{
+            res.status(400).json({message:"admin side coupons list not displaying"})
+
+
+        }
+    }
 
 }

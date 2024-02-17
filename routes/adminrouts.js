@@ -24,6 +24,8 @@ const {
 const {
     adminSideUserListGET,
     adminHOMEGET,
+    adminBannerGet,
+    adminCouponGET,
     
 
 } = require('../controllers/adminController')
@@ -46,6 +48,9 @@ router.get( '/login',adminloginGET)
     .get('/categoryadd',categoryAddGet)
     .post('/categoryadd',upload.single('image'),categoryAddPost)
     .get('/userlist',adminSideUserListGET)
+    .get('/banner',adminBannerGet)
+    .get('/coupon',adminCouponGET)
+
  
          
 
