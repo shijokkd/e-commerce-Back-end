@@ -14,12 +14,12 @@ const {
     categoryAddGet,
     categoryAddPost,
     productEditGet,
-    
+    productEditPOST,
     productDeletePost
 
 
 
-} = require('../controllers/productcontroller')
+} = require("../controllers/productcontroller")
 
 const {
     adminSideUserListGET,
@@ -43,6 +43,7 @@ router.get( '/login',adminloginGET)
     // .post ('/products',productPost)
     .get('/productsadd',productAddGet)
     .get('/productedit/:productid',productEditGet)
+    .post('/productedit/:productid',upload.array('image',6),productEditPOST)
     .delete('/productdelete',productDeletePost)
     .post('/productsadd',upload.array('image',6),productAddPost)
     .get('/categoryadd',categoryAddGet)

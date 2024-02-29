@@ -63,17 +63,17 @@ input[type=submit]:hover {
       <label for="category">Category</label>
       <select id="category" name="category" onblur="">
         <% category.forEach(cat => { %>
-          <option value="category"><%= cat.category %></option>
-        <% }); %>
-      </select>
-  
-      <label for="subcategory">Subcategory</label>
-      <select id="subcategory" name="subcategory">
-        <% category.forEach(cat => { %>
-          <% cat.subcategory.forEach(subcat => { %>
-            <option value="subcategory"><%= subcat %></option>
-          <% }); %>
-        <% }); %>
+          <option ><%= cat.category %></option>
+        </select>
+        
+        <label for="subcategory">Subcategory</label>
+        <select id="subcategory" name="subcategory">
+          <% category.forEach(cat => { %>
+            <% cat.subcategory.forEach(subcat => { %>
+              <option ><%= subcat %></option>
+              <% }); %>
+              <% }); %>
+              <% }); %>
       </select>
   
       <label for="discription">Description</label>
@@ -96,6 +96,22 @@ input[type=submit]:hover {
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

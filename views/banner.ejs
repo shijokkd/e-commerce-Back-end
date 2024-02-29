@@ -20,7 +20,7 @@
             <h1>banner</h1>
             <div class="container-fluid">
                 <div class="left">
-                    <a href="/admin/productsadd " class="btn btn-success btn-download">
+                    <a href="/admin/banneradd " class="btn btn-success btn-download">
                         <i class='bx bxs-plus-circle'></i>
                         <span class="text">Add New banner</span>
                     </a>
@@ -28,17 +28,58 @@
                 <div class="card mt-4">
                     <div class="table-data">
                         <div class="order">
-                            
-                                <div class="table-responsive">
-
-                                    
-
-                                        
-
-                                   
-                                    
-                             
-                    </div>
+                            <div class="card mt-4">
+                                <div class="table-data">
+                                    <div class="order">
+                
+                                            <div class="table-responsive">
+                                                <table id="tablePagination" class="table table-bordered table-hover table-striped">
+                                                    <thead class="thead-dark">
+                                                        <tr >
+                                                            <th scope="col">
+                                                                <center>Image</center>
+                                                            </th>
+                                                            <th scope="col">
+                                                                <center>banner Name</center>
+                                                            </th>
+                                                            <th scope="col">
+                                                                <center>subNot</center>
+                                                            </th>
+                                                            <th scope="col">
+                                                                <center>banner delete</center>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+            
+            
+            
+                                                    <tbody>
+                                                        <% bannerdata.forEach((data) => { %>
+                                                            <tr class="row<%=data._id%>">                                                   
+                                                                 <td><center><div class="scroll-container">
+                                                                    <img src="/img/<%= data.bannerImage %>" alt="Cinque Terre" width="50px" height="50px">
+                                                                   
+                                                                  </div></center></td>
+                                                                <td><center><%= data.BannerName %></center></td>
+                                                                <td><center><%= data.SubNot %></center></td>
+                                                                <td><center><button id="delete" onclick="confirmDelete('<%=data._id%>')">delete</button></center></td>
+                                                                
+                                                                
+                                                                
+                                                                <!-- Add other columns as needed -->
+                                                            </tr>
+                                                        <% }); %>
+                                                    </tbody>
+                                                    
+                                                </table>
+                                                
+                                            </div>
+                                
+                                    </div> 
+                                </div>
+                            </div>
+                         </div>
+                        
                 </div>
             </div>
         </section>
@@ -68,6 +109,40 @@
 
     <!-- Main Script -->
     <script src="/assets/js/main.js?v=1.1" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085D6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                console.log(id);
+                const response=await fetch(`/admin/banner?id=${id}`,{method:"delete"});
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error("Error deleting banner: " + response.statusText);
+                }
+                // const result = await response.json();
+                if (response.status==200) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your banner has been deleted.",
+                        icon: "success"
+                    });
+                    document.querySelector('.row'+id).remove()
+                } else {
+                    message.innerHTML = result.error || "Unknown error";
+                }
+            }
+        });
+   }
+</script>
 </body>
 
 </html>

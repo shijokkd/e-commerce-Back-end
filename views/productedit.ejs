@@ -46,41 +46,44 @@ input[type=submit]:hover {
 
   <h3>Product Adding</h3>
   
+
+  
   <div class="container">
-    <form action="/admin/productedit" method="post" enctype="multipart/form-data">
+    <form action="/admin/productedit/<%=idproduct._id%>" method="post" enctype="multipart/form-data">
       <label for="productname">Product Name</label>
-      <input type="text" id="name" name="productname" placeholder="Product name..">
+      <input type="text" id="name" name="productname" placeholder="Product name.." value="<%= idproduct.productname %>">
   
       <label for="price">Price</label><br>
-      <input type="number" id="price" name="price" placeholder="Product price"><br><br>
+      <input type="number" id="price" name="price" placeholder="Product price" value="<%= idproduct.price %>"><br><br>
   
       <label for="offerprice">Offer Price</label><br>
-      <input type="number" id="offerprice" name="offerprice" placeholder="Offer price"><br><br>
+      <input type="number" id="offerprice" name="offerprice" placeholder="Offer price" value="<%= idproduct.offerprice %>"><br><br>
   
       <label for="stock">Stock</label><br>
-      <input type="number" id="stock" name="stock" placeholder="Product quantity"><br><br>
+      <input type="number" id="stock" name="stock" placeholder="Product quantity" value="<%= idproduct.stock %>"><br><br>
   
       <label for="category">Category</label>
-      <select id="category" name="category" onblur="">
+      <select id="category" name="category" onblur=""value="<%= idproduct.category %>">
         <% category.forEach(cat => { %>
-          <option value="category"><%= cat.category %></option>
+          <option ><%= cat.category %></option>
         <% }); %>
       </select>
   
       <label for="subcategory">Subcategory</label>
-      <select id="subcategory" name="subcategory">
+      <select id="subcategory" name="subcategory" value="<%= idproduct.subcategory %>">
         <% category.forEach(cat => { %>
           <% cat.subcategory.forEach(subcat => { %>
-            <option value="subcategory"><%= subcat %></option>
+            <option value=" "><%= subcat %></option>
           <% }); %>
         <% }); %>
+  
       </select>
   
       <label for="discription">Description</label>
-      <textarea id="discription" name="discription" placeholder="Write description.."></textarea>
+      <textarea id="discription" name="discription" placeholder="Write description.." ><%= idproduct.discription %></textarea>
   
       <label for="file">Product Image</label>
-      <input type="file" id="image" name="image" multiple><br>
+      <input type="file" id="image" name="image" multiple value="/img/<%= idproduct.image %>"><br>
   
       <input type="submit" value="Submit">
 
@@ -96,18 +99,3 @@ input[type=submit]:hover {
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
