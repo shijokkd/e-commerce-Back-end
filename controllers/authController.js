@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 require('dotenv').config()
 const nodemailer = require('nodemailer');
 
-const OTPsend = require('../helpers/twilio')
 
 
 const twilio = require('twilio');
@@ -45,36 +44,48 @@ module.exports = {
 
 
     signuppost: async (req, res) => {
-        const { mobile_number,lastname, name, password, email,confirm_password,} = req.body;
+        const { mobile_number, name, password, email,confirm_password,} = req.body;
+        console.log(req.body);
 
-        if(!name || !mobile_number || !password || !email || !confirm_password || !lastname){
+
+
+        if(!name || !mobile_number || !password || !email || !confirm_password ){
 
             res.render('signup', {erorr:`fill all the details`});
-
+            
+            
+            console.log(hashedPassword);
+            
         }else{
-        try {
-            console.log(req.body);
+            try {
+                
                 const otp = otpgenerator.generate(4, {
-                upperCaseAlphabets: false,
-                lowerCaseAlphabets: false,
-                specialChars: false,
-            });
-            console.log(`otp is the 1  ${otp}`);
-            const curruntdate = new Date();
+                    upperCaseAlphabets: false,
+                    lowerCaseAlphabets: false,
+                    specialChars: false,
+                });
+                const curruntdate = new Date();
+                console.log(otp);
+
+                // Hash the password
+                const saltRounds = 10;
+                const hashedPassword = await bcrypt.hash(password, saltRounds);
+                console.log(hashedPassword);
+                
             const data = await otpmodel.create({
             mobile_number,
             name,
-            lastname,
             email,
-            password,
+            password:hashedPassword,
             otp:otp,
             otpexpiration:new Date(curruntdate.getTime()),
             upsert:true, new:true, setDefaultsOnInsert:true
+
+        
             
         });
         console.log(data);
-        // console.log(forOTP);
-            console.log( );    
+
             await twilioclient.messages.create({
                 body: `this is the testing  otp  ${otp}`,
                 to: mobile_number,
@@ -99,15 +110,54 @@ module.exports = {
         res.render('otpverification');
     },
 
+    // verifyOtpPost: async (req, res) => {
+    //     try {
+    //         const { otp } = req.body;
+    //            console.log(otp,otp);
+    //         const otpData = await otpmodel.find({ otp });
+             
+    //         if (!otpData) {
+    //             res.send('You have entered the wrong OTP');
+    
+    //             return res.status(400).json({
+    //                 success: false,
+    //                 msg: 'You entered the wrong OTP!',
+    //             });
+    //         }
+    
+    //         const isOtpExpired = await otpverifications(otpData.otpexpiration);
+    
+    //         if (isOtpExpired) {
+            
+    //             res.send('OTP is expired');
+
+    
+    //             return res.status(400).json({
+    //                 success: false,
+    //                 msg: 'Your OTP has expired!',
+    //             });
+    //         }
+    
+    //         // If OTP is correct and not expired, update the otpmodel
+    //         await otpmodel.updateOne({ otp }, { $unset: { otp: 1, otpexpiration: 1 } });
+    //         res.redirect('/');
+    //     } catch (error) {
+    //         return res.status(400).json({
+    //             success: false,
+    //             msg: error.message,
+    //         });
+    //     }
+    // },
     verifyOtpPost : async(req,res)=>{
         
         try{
             const { otp } = req.body
-            console.log(otp);
-            console.log(forOTP);
+        
             const otpdata = await otpmodel.findOne({ otp:otp });/////otp
             console.log(otpdata);
             if (!otpdata){
+                await otpmodel.findOneAndDelete({otp})
+
                 res.send ('you have enterderd wrong otp')
                 
                 return res.status(400).json({
@@ -118,9 +168,10 @@ module.exports = {
 
             const isOtpExpired = await otpverifications(otp.otpexpiration);
 
-            if (isOtpExpired){
+            if (isOtpExpired){  
+                await otpmodel.findByIdAndDelete({otp}) 
                 res.send ('otp is expired')
-
+                
                 return res.status(400).json({
                     success:false,
                     msg:('your otp has expired!')
@@ -138,6 +189,7 @@ module.exports = {
     
         }
     },
+    
 
 
     forgotpasswordGET: (req, res) => {
@@ -165,18 +217,7 @@ module.exports = {
                      
                 })
             }
-            // else{
-            //     var forOTP = otpgenerator.generate(4, {
-            //         upperCaseAlphabets: false,
-            //         lowerCaseAlphabets: false,
-            //         specialChars: false,
-            //     });
-
-            // }
-
-
-
-            
+          
             const userEmail = process.env.USER_EMAIL
             const userPassword = process.env.USER_PASSWORD
 
@@ -248,15 +289,40 @@ module.exports = {
     enterpasswordPOST: async(req,res)=>{
         try{
             const{password}=req.body
-            
-
-            
-
+      
         }
         catch{
 
         }
+    },
+    loginPost: async (req, res) => {
+        const { email, password } = req.body;
+        try {
+            const user = await otpmodel.findOne({ email });
+    
+            if (!user) {
+                return res.send('Login email not found');
+            }
+    
+            const passwordMatch = await bcrypt.compare(password, user.password);
+            console.log(passwordMatch);
+
+    
+            if (passwordMatch) {
+                req.session.email = email
+                req.session.id = user._id;
+                // Redirect to home page upon successful login
+
+                res.redirect("/home");
+            } else {
+                return res.send('Wrong password');
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send('Internal Server Error');
+        }
     }
+    
 
         
 

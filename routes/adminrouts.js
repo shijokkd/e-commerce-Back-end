@@ -24,12 +24,19 @@ const {
 const {
     adminSideUserListGET,
     adminHOMEGET,
-    adminBannerGet,
+    
     adminCouponGET,
     
 
 } = require('../controllers/adminController')
 
+const {
+    adminBannerGet,
+    bannerDeletePost,
+    bannerAddGet,
+    bannerAddPost,
+
+}= require("../controllers/bannerController")
 
 
 
@@ -50,6 +57,9 @@ router.get( '/login',adminloginGET)
     .post('/categoryadd',upload.single('image'),categoryAddPost)
     .get('/userlist',adminSideUserListGET)
     .get('/banner',adminBannerGet)
+    .get('/banneradd',bannerAddGet)
+    .post('/banneradd',upload.single('image'),bannerAddPost)
+    .delete('/banner', bannerDeletePost)
     .get('/coupon',adminCouponGET)
 
  

@@ -2,7 +2,8 @@ const bannermodel = require('../models/bannermodel')
 
 module.exports = {
     adminBannerGet: async(req,res)=>{
-        const bannerdata = await bannermodel.find()
+        const bannerdata = await bannermodel.find() ?? null
+        
 
         try{
             res.render('banner',{bannerdata})
@@ -27,7 +28,7 @@ module.exports = {
     bannerAddPost: async (req,res)=>{
         const {BannerName,SubNot}=req.body
         const path = req.file.filename
-        console.log(path);
+        console.log(`this is `);
         try{
             const data = new bannermodel({
                 BannerName,

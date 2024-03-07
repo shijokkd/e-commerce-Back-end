@@ -1,6 +1,8 @@
-const { AwsInstance } = require('twilio/lib/rest/accounts/v1/credential/aws')
+
 const  categorymodel = require ('../models/categorymodel')
 const productmodel = require ("../models/productmodel")
+const bannermodel = require('../models/bannermodel')
+
 const fs = require = require('fs')
 
 
@@ -211,7 +213,23 @@ module.exports = {
             res.status(400).json({message:"product edit notworking in project"})
 
         }
+    },
+
+    userSIdeProduct: async (req,res)=>{
+        const banner = await bannermodel.find() ?? null
+        const product = await productmodel.find() ?? null
+
+
+        try{
+            res.render('userhomepages/product',{banner,product})
+
+        }catch{
+
+        }
+        
     }
+
+     
 
 
 

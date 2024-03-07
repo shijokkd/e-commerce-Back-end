@@ -5,7 +5,7 @@ const router = express.Router();
 const {
 
     loginGet,
-    // loginPost,
+    loginPost,
     signupGet,
     signuppost,
     verifyOtpGet,
@@ -18,15 +18,31 @@ const {
     enterpasswordPOST, 
 
 
-} = require('../controllers/authController');
+} = require('../controllers/authController.js');
 
+
+const {
+    userHomeGET,
+    profileGET,
+    profilPOST
+   
+
+}=require('../controllers/userController.js')
+
+const {
+    userSIdeProduct,
+}=require("../controllers/productcontroller.js")
+
+const {
+    wishlistGET,
+} = require("../controllers/CartWIshlist.js")
 
 
 
 
 
 router .get('/',loginGet)
-    //   .post('/',loginPost)
+      .post('/',loginPost)
       .get('/signup',signupGet)
       .post('/signup',signuppost)
       .get('/otpverify',verifyOtpGet)
@@ -37,6 +53,11 @@ router .get('/',loginGet)
       .post('/enterotp',enterotpPOST)
       .get('/enterpassword',enterpasswordGET)
       .get('/enterpassword',enterpasswordPOST)
+      .get('/home',userHomeGET)
+      .get('/product',userSIdeProduct)
+      .get('/profile',profileGET)
+      .post('/profile',profilPOST)
+      .get('/wishlist',wishlistGET)
 
       
 

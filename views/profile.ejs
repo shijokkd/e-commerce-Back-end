@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>RegistrationForm_v2 by Colorlib</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <meta name="robots" content="noindex, follow">
+</head>
+
+<body>
+  <div class="wrapper" style="background-image: url('/image/bg-registration-form-2.jpg');">
+    <div class="inner">
+      <form action="/profile" id="registrationForm" method="post">
+        <h3>complite your profile</h3>
+        <div class="form-group">
+          
+        </div>
+        <div class="form-wrapper">
+          <label for="firstName" id="firstNameError">House Name/Number :</label>
+          <input type="text" class="form-control" id="firstName" pattern="[A-Za-z]{1,}" required name="house_name" value="<%= userData.pincode ?? null %>">
+          <div class="error-message"  ></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="email" id="emailError">place</label>
+          <input type="text" class="form-control" id="email" required name="place">
+          <div class="error-message" id="emailError"></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="mobileNumber" id="mobileNumberError">city</label>
+          <input type="text" class="form-control" id="mobileNumber"  name="city">
+          <div class="error-message" id="mobileNumberError"></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="password" id="passwordError">state</label>
+          <input type="text" class="form-control" id="password"  required name="state">
+          <div class="error-message" id="passwordError"></div>
+        </div>
+        <div class="form-wrapper">
+          <label for="confirmPassword" id="confirmPasswordError"> pincode</label>
+          <input type="number" class="form-control" id="confirmPassword"  required name="pincode">
+          <div class="error-message" id="confirmPasswordError"></div>
+        </div>
+        
+        <button type="submit">Register Now</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

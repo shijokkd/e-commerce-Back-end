@@ -5,11 +5,18 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost:27017/adminpage').then(()=> {console.log('connected');}).catch(()=> console.log('error'))
 
-const multer = require('multer');
-
 require('dotenv').config()
+const  session=require('express-session')  
+const noCache=require('nocache')
 
-
+app.use(session({
+    secret:'dcart',
+    resave:true,
+    saveUninitialized:false
+  }));                            ///////   session setings
+  
+  app.use(noCache());      //////using nocache
+  
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json()) 

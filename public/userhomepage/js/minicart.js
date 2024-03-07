@@ -1575,7 +1575,7 @@ exports.append = function(obj, val){
  */
 
 exports.map = function(arr, prop){
-  return arr.map(function(obj){
+  return arr.map(function(obj){ 
     return obj[prop];
   });
 };
