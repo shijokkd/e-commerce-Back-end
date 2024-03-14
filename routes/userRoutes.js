@@ -24,17 +24,25 @@ const {
 const {
     userHomeGET,
     profileGET,
-    profilPOST
+    profilPOST,
+    checkoutGET,
    
 
 }=require('../controllers/userController.js')
 
 const {
     userSIdeProduct,
+    singleProductGET,
 }=require("../controllers/productcontroller.js")
 
 const {
     wishlistGET,
+    wishlistAddpost,
+    cartGET,
+    cartPOST,
+    wishlistproductdelete,
+    cartproductdelete,
+    cartProductIncrement,
 } = require("../controllers/CartWIshlist.js")
 
 
@@ -56,8 +64,16 @@ router .get('/',loginGet)
       .get('/home',userHomeGET)
       .get('/product',userSIdeProduct)
       .get('/profile',profileGET)
-      .post('/profile',profilPOST)
+      .post('/profile',profilPOST)  
       .get('/wishlist',wishlistGET)
+      .post('/wishlist',wishlistAddpost)
+      .get('/products/:productid',singleProductGET)
+      .get('/cart',cartGET)
+      .post('/cart',cartPOST)
+      .get('/checkout',checkoutGET)
+      .delete('/wishlistdelete',wishlistproductdelete)
+      .delete('/cartproductdelete',cartproductdelete)
+      .post('/quantityUpdate',cartProductIncrement)
 
       
 

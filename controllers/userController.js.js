@@ -42,6 +42,7 @@ module.exports={
             const userData = await profilemodel.find(userID) 
             console.log(userData);
             
+            
 
            
                 res.render('profile',{userData});    ///////////email ._id finting  and add the id in the data
@@ -77,6 +78,13 @@ module.exports={
         } catch (error) {
             console.log(error);
             return res.status(500).send('Internal Server Error');
+        }
+    },
+    checkoutGET: async(rreq,res)=>{
+        try{
+              res.render('userhomepages/checkout')
+        }catch{
+
         }
     }
 

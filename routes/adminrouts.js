@@ -11,8 +11,7 @@ const {
     // productPost,
     productAddGet,
     productAddPost,
-    categoryAddGet,
-    categoryAddPost,
+   
     productEditGet,
     productEditPOST,
     productDeletePost
@@ -20,6 +19,12 @@ const {
 
 
 } = require("../controllers/productcontroller")
+
+const{
+    categoryAddGet,
+    categoryAddPost,
+
+}=require('../controllers/categeyController')
 
 const {
     adminSideUserListGET,
@@ -54,7 +59,7 @@ router.get( '/login',adminloginGET)
     .delete('/productdelete',productDeletePost)
     .post('/productsadd',upload.array('image',6),productAddPost)
     .get('/categoryadd',categoryAddGet)
-    .post('/categoryadd',upload.single('image'),categoryAddPost)
+    .post('/categoryadd',categoryAddPost)
     .get('/userlist',adminSideUserListGET)
     .get('/banner',adminBannerGet)
     .get('/banneradd',bannerAddGet)

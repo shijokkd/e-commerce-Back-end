@@ -10,14 +10,14 @@ const nodemailer = require('nodemailer');
 
 
 const twilio = require('twilio');
+const { default: mongoose } = require('mongoose');
 // require('dotenv').config()
 // const otpgenerator = require('otp-generator');
 
 
 const accountsid = process.env.ACCOUNT_SID;
 const authtoken = process.env.AUTH_TOKEN;
-console.log(accountsid)
-console.log(authtoken)
+
 
 const twilioclient = new twilio(accountsid, authtoken);
 
@@ -110,44 +110,6 @@ module.exports = {
         res.render('otpverification');
     },
 
-    // verifyOtpPost: async (req, res) => {
-    //     try {
-    //         const { otp } = req.body;
-    //            console.log(otp,otp);
-    //         const otpData = await otpmodel.find({ otp });
-             
-    //         if (!otpData) {
-    //             res.send('You have entered the wrong OTP');
-    
-    //             return res.status(400).json({
-    //                 success: false,
-    //                 msg: 'You entered the wrong OTP!',
-    //             });
-    //         }
-    
-    //         const isOtpExpired = await otpverifications(otpData.otpexpiration);
-    
-    //         if (isOtpExpired) {
-            
-    //             res.send('OTP is expired');
-
-    
-    //             return res.status(400).json({
-    //                 success: false,
-    //                 msg: 'Your OTP has expired!',
-    //             });
-    //         }
-    
-    //         // If OTP is correct and not expired, update the otpmodel
-    //         await otpmodel.updateOne({ otp }, { $unset: { otp: 1, otpexpiration: 1 } });
-    //         res.redirect('/');
-    //     } catch (error) {
-    //         return res.status(400).json({
-    //             success: false,
-    //             msg: error.message,
-    //         });
-    //     }
-    // },
     verifyOtpPost : async(req,res)=>{
         
         try{
@@ -289,6 +251,9 @@ module.exports = {
     enterpasswordPOST: async(req,res)=>{
         try{
             const{password}=req.body
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            console.log(hashedPassword);
       
         }
         catch{
@@ -309,10 +274,8 @@ module.exports = {
 
     
             if (passwordMatch) {
-                req.session.email = email
-                req.session.id = user._id;
-                // Redirect to home page upon successful login
-
+                req.session.email = user.email
+                req.session.id =user.id;
                 res.redirect("/home");
             } else {
                 return res.send('Wrong password');
@@ -322,14 +285,9 @@ module.exports = {
             return res.status(500).send('Internal Server Error');
         }
     }
-    
-
-        
-
-    
 
 
-
+      
 
  
     

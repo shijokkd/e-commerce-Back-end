@@ -46,16 +46,13 @@ input[type=submit]:hover {
 <h3>category Adding </h3>
 
 <div class="container">
-  <form action="/admin/categoryadd" method="post" enctype="multipart/form-data" >
+  <form action="/admin/categoryadd" method="post"  >
     <label for="category">category Name</label>
     <input type="text"  name="category" placeholder="category name..">
 
 
     <label for="subcategory">sub_category</label><br>
     <input type="text"  name="subcategory" placeholder="product subcategory"><br>
-
-    <label for="image">category image</label>
-    <input type="file" id="image" name="image" accept="image" ><br>
 
     <input type="submit" value="Submit">
   </form>

@@ -11,9 +11,7 @@ const otpschema  = new mongoose.Schema({
         type:[String]
         
     },
-    imagepath : {
-        type:String
-    },
+  
 })
 
 

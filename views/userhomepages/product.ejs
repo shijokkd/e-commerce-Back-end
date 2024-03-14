@@ -5,25 +5,25 @@
 <div class="maincontainer">
    <% product.forEach(datas =>{ %>
    <div class="productcard">
-      <div class="imgsection" >
+     <a href='/products/<%= datas._id %>'> <div class="imgsection" >
          <img src="img/<%= datas.imagepath[0] %>" alt="soory "  width="95%" height="95%" >
       </div>
       <div class="contentsection">
          <h4><%= datas.productname %></h4>
         <p class="pricetab"><%= datas.price %></p>
         <p><%= datas.subcategory %></p>
+      </a>
         <div class="threebuton">
          <button >buy now</button>
-         <button ><i class="fa fa-shopping-cart"></i></button>
-         <button ><i class="fas fa-heart"></i></button>
-        </div>
-
+         
+        
 
       </div>
    </div>  
-   <% }) %>
 </div>
+<%    }) %>
 
+</div>
 <%- include("homePageFooter") -%>
 
 

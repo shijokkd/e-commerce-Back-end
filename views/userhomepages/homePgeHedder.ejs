@@ -1,13 +1,8 @@
-<!--A Design by W3layouts
-   Author: W3layout
-   Author URL: http://w3layouts.com
-   License: Creative Commons Attribution 3.0 Unported
-   License URL: http://creativecommons.org/licenses/by/3.0/
-   -->
+
    <!DOCTYPE html>
    <html lang="zxx">
       <head>
-         <title>Toys Shop an Ecommerce Category Bootstrap Responsive Web Template | Home :: w3layouts</title>
+         <title>Dcart</title>
          <!--meta tags -->
          <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,26 +40,11 @@
       <body>
          <div class="header-outs" id="home">
             <div class="header-bar">
-               <div class="info-top-grid">
-                  <div class="info-contact-agile">
-                     <ul>
-                        <li>
-                           <span class="fas fa-phone-volume"></span>
-                           <p>+(000)123 4565 32</p>
-                        </li>
-                        <li>
-                           <span class="fas fa-envelope"></span>
-                           <p><a href="mailto:info@example.com">info@example1.com</a></p>
-                        </li>
-                        <li>
-                        </li>
-                     </ul>
-                  </div>
-               </div>
+               
                <div class="container-fluid">
                   <div class="hedder-up row">
                      <div class="col-lg-3 col-md-3 logo-head">
-                        <h1><a class="navbar-brand" href="index.html">Toys-Shop</a></h1>
+                        <h1><a class="navbar-brand" href="index.html">Dcart</a></h1>
                      </div>
                      <div class="col-lg-5 col-md-6 search-right">
                         <form class="form-inline my-lg-0">
@@ -76,8 +56,11 @@
                         <div class="cart-icons">
                            <ul>
                               <li>
-                                 <span class="far fa-heart"></span>
+                                <a href="http://localhost:8080/wishlist"> <span class="far fa-heart"></span></a>
                               </li>
+                              <li>
+                                 <a href="http://localhost:8080/cart"> <span class="far fa-shopping-bag"></span></a>
+                               </li>
                               <li>
                                  <button type="button" data-toggle="modal" data-target="#exampleModal"> <span class="far fa-user"></span></button>
                               </li>
@@ -113,18 +96,12 @@
                      </ul>
                   </div>
                </nav>
-            </div>
-            <!-- Slideshow 4 -->
-            
-            <!-- This is here just to demonstrate the callbacks -->
-            <!-- <ul class="events">
-               <li>Example 4 callback events</li>
-            </ul>-->
-         
+          
       
       <!-- //banner -->
       <!-- about -->
       <div class="slider text-center" >
+         
          <div class="callbacks_container">
             <ul class="rslides" id="slider4">
                <% banner.forEach((data)=>{  %>
@@ -148,3 +125,4 @@
              
             </ul>
          </div>
+         

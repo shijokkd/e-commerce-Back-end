@@ -1,7 +1,10 @@
 
-const  categorymodel = require ('../models/categorymodel')
 const productmodel = require ("../models/productmodel")
 const bannermodel = require('../models/bannermodel')
+const  categorymodel = require ('../models/categorymodel')
+
+const mongoose = require('mongoose');
+
 
 const fs = require = require('fs')
 
@@ -19,59 +22,7 @@ module.exports = {
 
     },
 
-    categoryAddGet : async(req,res)=>{
-    
-        try{
-
-            res.render('category')
-        }catch{
-
-        }
-    },
-
-    categoryAddPost : async (req, res) => {
-        // console.log(req.body);
-    
-        try {
-           console.log(req.body)
-    
-           const { category, subcategory } = req.body;
-           
-           
-           const categoryData = await categorymodel.findOne({ category: category });
-           
-           
-           if (!categoryData) {
-                const path = req.file.filename ??undefined
-                await categorymodel.create({
-                    category: category,
-                    subcategory: [subcategory], // Assuming subcategory is a string, change it if it's an array
-                    imagepath: path 
-                });
-                res.redirect('/admin/categoryadd')
-
-
-    
-                // console.log(data);
-                       
-
-            }
-             else {
-                await categorymodel.findOneAndUpdate(
-                    { category: category },
-                    { $addToSet: { subcategory: subcategory } },
-                    { new: true }
-                );
-                res.redirect('/admin/products')
-                res.status(200).json({ success: true, message: 'Subcategory added successfully' });
-            }
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    },
-
-
+  
 
     productAddGet:async(req,res)=>{
         try{
@@ -148,7 +99,7 @@ module.exports = {
         try{ 
             const id = await req.params.productid
             const idproduct = await productmodel.findById(id)
-            // const category = await categorymodel.find()
+            
             
 
 
@@ -227,7 +178,37 @@ module.exports = {
 
         }
         
+    },
+
+
+    // ...
+    
+    singleProductGET: async (req, res) => {
+        try {
+            const id = req.params.productid;
+    
+            // Validate if the id is a valid ObjectId
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).send('Invalid product ID');
+            }
+    
+            const idproduct = await productmodel.findById(id);
+            console.log(idproduct);
+    
+            if (!idproduct) {
+                return res.status(404).send('Product not found');
+            }
+    
+            res.render('userhomepages/productdetails',{idproduct});
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
     }
+    
+       
+
+  
 
      
 

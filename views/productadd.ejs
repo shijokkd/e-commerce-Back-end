@@ -60,21 +60,23 @@ input[type=submit]:hover {
       <label for="stock">Stock</label><br>
       <input type="number" id="stock" name="stock" placeholder="Product quantity"><br><br>
   
+   
       <label for="category">Category</label>
-      <select id="category" name="category" onblur="">
-        <% category.forEach(cat => { %>
-          <option ><%= cat.category %></option>
-        </select>
-        
-        <label for="subcategory">Subcategory</label>
-        <select id="subcategory" name="subcategory">
-          <% category.forEach(cat => { %>
-            <% cat.subcategory.forEach(subcat => { %>
-              <option ><%= subcat %></option>
-              <% }); %>
-              <% }); %>
-              <% }); %>
-      </select>
+<select id="category" name="category" onblur="">
+  <% category.forEach(cat => { %>
+    <option><%= cat.category %></option>
+  <% }); %>
+</select>
+
+<label for="subcategory">Subcategory</label>
+<select id="subcategory" name="subcategory">
+  <% category.forEach(cat => { %>
+    <% cat.subcategory.forEach(subcat => { %>
+      <option><%= subcat %></option>
+    <% }); %>
+  <% }); %>
+</select>
+
   
       <label for="discription">Description</label>
       <textarea id="discription" name="discription" placeholder="Write description.."></textarea>
