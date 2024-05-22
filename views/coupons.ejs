@@ -20,7 +20,7 @@
             <h1>Coupons</h1>
             <div class="container-fluid">
                 <div class="left">
-                    <a href="/admin/productsadd " class="btn btn-success btn-download">
+                    <a href="/admin/couponadd " class="btn btn-success btn-download">
                         <i class='bx bxs-plus-circle'></i>
                         <span class="text">Add New coupons</span>
                     </a>
@@ -31,7 +31,48 @@
                             
                                 <div class="table-responsive">
 
-                                    
+                                    <div class="table-responsive">
+                                        <table id="tablePagination" class="table table-bordered table-hover table-striped">
+                                            <thead class="thead-dark">
+                                                <tr >
+                                                    <th scope="col">
+                                                        <center>coupon code</center>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <center>max_rate</center>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <center>min_rate</center>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <center>discount</center>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <center>delete</center>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <% data.forEach((data) =>{ %>
+
+                                            
+                                            <tr>
+                                               <td><center><%= data.coupon %></center></td>
+                                               <td><center><%= data.max_rate %></center></td>
+                                               <td><center><%= data.min_rate %></center></td>
+                                               <td><center><%= data.discount %></center></td>
+                                               <td><center><button>delete</button></center></td>
+                                            </tr>
+                                            <% }) %>
+    
+    
+    
+                                           
+                                            </tbody>
+                                            
+                                        </table>
+                                        
+                                    </div>
+                        
 
                                         
 

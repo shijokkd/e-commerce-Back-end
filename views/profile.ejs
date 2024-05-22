@@ -20,31 +20,32 @@
         </div>
         <div class="form-wrapper">
           <label for="firstName" id="firstNameError">House Name/Number :</label>
-          <input type="text" class="form-control" id="firstName" pattern="[A-Za-z]{1,}" required name="house_name" value="<%= userData.pincode ?? null %>">
+          <input type="text" class="form-control" id="firstName" pattern="[A-Za-z]{1,}" required name="house_name" value="<%= userData && userData.house_name ? userData.house_name : '' %>">
           <div class="error-message"  ></div>
         </div>
         <div class="form-wrapper">
           <label for="email" id="emailError">place</label>
-          <input type="text" class="form-control" id="email" required name="place">
+          <input type="text" class="form-control" id="email" required name="place" value="<%= userData && userData.place ? userData.place : '' %>">
           <div class="error-message" id="emailError"></div>
         </div>
         <div class="form-wrapper">
           <label for="mobileNumber" id="mobileNumberError">city</label>
-          <input type="text" class="form-control" id="mobileNumber"  name="city">
+          <input type="text" class="form-control" id="mobileNumber"  name="city" value="<%= userData && userData.city ? userData.city : '' %>">
           <div class="error-message" id="mobileNumberError"></div>
         </div>
         <div class="form-wrapper">
           <label for="password" id="passwordError">state</label>
-          <input type="text" class="form-control" id="password"  required name="state">
+          <input type="text" class="form-control" id="password"  required name="state" value="<%= userData && userData.state ? userData.state : '' %>">  
           <div class="error-message" id="passwordError"></div>
         </div>
         <div class="form-wrapper">
           <label for="confirmPassword" id="confirmPasswordError"> pincode</label>
-          <input type="number" class="form-control" id="confirmPassword"  required name="pincode">
+          <input type="number" class="form-control" id="confirmPassword"  required name="pincode"  value="<%= userData && userData.pincode ? userData.pincode : '' %>">
           <div class="error-message" id="confirmPasswordError"></div>
         </div>
         
         <button type="submit">Register Now</button>
+        <button ><a href="/home" style="color: aliceblue;">back to home</a></button>
       </form>
     </div>
   </div>

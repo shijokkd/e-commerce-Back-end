@@ -24,68 +24,125 @@
 <body>
     <%- include("layouts/hedder") -%>
 
+    <meta charset="utf-8" />
 
-
-        <section class="content-main">
-            <div class="container-fluid">
-                <div class="left">
-                    <a href="/admin/productsadd " class="btn btn-success btn-download">
-                        <i class='bx bxs-plus-circle'></i>
-                        <span class="text">users orders list</span>
-                    </a>
-                </div>
-                
-                <div class="card mt-4">
-                    <div class="table-data">
-                        <div class="order">
+    <title>Order history - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      body {
+        background: #eee;
+      }
+      .panel-order .row {
+        border-bottom: 1px solid #ccc;
+      }
+      .panel-order .row:last-child {
+        border: 0px;
+      }
+      .panel-order .row .col-md-1 {
+        text-align: center;
+        padding-top: 15px;
+      }
+      .panel-order .row .col-md-1 img {
+        width: 50px;
+        max-height: 50px;
+      }
+      .panel-order .row .row {
+        border-bottom: 0;
+      }
+      .panel-order .row .col-md-11 {
+        border-left: 1px solid #ccc;
+      }
+      .panel-order .row .row .col-md-12 {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+      .panel-order .row .row .col-md-12:last-child {
+        font-size: 11px;
+        color: #555;
+        background: #efefef;
+      }
+      .panel-order .btn-group {
+        margin: 0px;
+        padding: 0px;
+      }
+      .panel-order .panel-body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+      .panel-order .panel-deading {
+        margin-bottom: 0;
+      }
+	  .container{
+		width: 90%;
+		height: auto;
+	  }
     
-                                <div class="table-responsive">
-                                    <table id="tablePagination" class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-dark">
-                                            <tr >
-                                                <th scope="col">
-                                                    <center>S.L.Number</center>
-                                                </th>
-                                                <th scope="col">
-                                                    <center>Name</center>
-                                                </th>
-                                                <th scope="col">
-                                                    <center>Quantity</center>
-                                                </th>                                              
-                                                <th scope="col">
-                                                    <center>total Price</center>
-                                                </th>
-                                              
-
-                                            </tr>
-                                        </thead>
-
-
-
-                                        <tbody>
-                                                <tr >                                                   
-                                                    <td></center></td>
-                                                    <td><center></center></td>
-                                                    <td><center></center></td>
-                                                    <td><center></center></td> 
-                                                    <td><center></center></td>
-                                                    <td><center></center></td>
-                                                  
-                                                    
-                                                    <!-- Add other columns as needed -->
-                                                </tr>
-                                            
-                                        </tbody>
-                                        
-                                    </table>
-                                    
-                                </div>
+    </style>
+    </head>
+    <body>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+      />
+      <div class="panel-body">
+            <% order.forEach((data) => { %>
+              <div class="row">
+          
+                      <div class="col-md-1">
+                          <img src="https://bootdey.com/img/Content/user_3.jpg" class="media-object img-thumbnail" />
+                      </div>
+                      <div class="col-md-11">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="pull-right">
+                    <label class=" label label<%= data._id %> label-danger"><%= data.status %></label>
                     
-                        </div> 
-                    </div>
+                        
+                            <select name="status" id="status" onchange="status(this.value,'<%= data._id %>')">
+                                <option value=""></option>
+                                <option value="on the way">on the way</option>
+                                <option value="Shipped">Shipped</option>
+                                <option value="delivered">delivered</option>
+                                
+                            </select>
+                        
+                
+                   
                 </div>
-            </div>
-        </section>
+  
+                  <% data.productid.forEach((product) => { %>
+  
+                                  <span><strong><%= product.productname %></strong><br></span>
+                  <% }) %>
+  
+                                  <span class="label label-info">order placed date :<%= data.checkoutid.currentdate%></span><br />
+                                  Quantity: <%= data.checkoutid.quantity%>,     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   total cost: <%= data.checkoutid.totalamount%>  &nbsp &nbsp &nbsp &nbsp &nbsp      payment methode:<%= data.checkoutid.paymentoption%><br />
+                              </div>
+                              <div class="col-md-12">
+                                  order made on: <%= order.currentdate %> by <a href="/ordersummery?id=<%= data._id %>">   &nbsp; Dcart</a>
+                              </div>
+                          </div>
+                      </div>
+            </a>
+              </div>
+          </div>
+      <% }) %>
+      
+      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      <script type="text/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    </body>
+
+
+
+       
         
 
       
@@ -94,6 +151,26 @@
             <%- include("layouts/footer") -%>
         </footer>
     </main>
+
+
+    <script>
+    
+        async function status(status, id) {
+            console.log('halo');
+            try {
+              console.log('halo');
+              const response = await axios.post('/admin/productstatus', { id:id,status:status }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                document.querySelector(`.label${id}`).innerHTML = status
+            
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
 
     
 </body>

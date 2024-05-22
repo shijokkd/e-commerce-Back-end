@@ -477,7 +477,7 @@
                 throw new Error("Error adding product to cart: " + response.statusText);
             }
 
-            if (response.status === 200) {
+            if (response.status == 200) {
                 Swal.fire({
                     title: "Added",
                     text: "Your product has been added to the cart.",

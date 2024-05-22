@@ -26,6 +26,13 @@ const {
     profileGET,
     profilPOST,
     checkoutGET,
+    checkoutPost,
+    orderhistoryGET,
+    addcoponPost,
+    checkoutfinan,
+    ordesummeryGET,
+    canselorderPOST
+    
    
 
 }=require('../controllers/userController.js')
@@ -33,6 +40,9 @@ const {
 const {
     userSIdeProduct,
     singleProductGET,
+    categorybaseGET,
+    pricebaseGET,
+    serchbaseGET,
 }=require("../controllers/productcontroller.js")
 
 const {
@@ -74,6 +84,15 @@ router .get('/',loginGet)
       .delete('/wishlistdelete',wishlistproductdelete)
       .delete('/cartproductdelete',cartproductdelete)
       .post('/quantityUpdate',cartProductIncrement)
+      .post('/checkout',checkoutPost)
+      .get('/order',orderhistoryGET)
+      .post('/addcoupon',addcoponPost)
+      .post('/checkoutpost',checkoutfinan)
+      .get('/filterproduct',categorybaseGET)
+      .get('/filterproducts',pricebaseGET)
+      .post('/filterproductserch',serchbaseGET)
+      .get('/ordersummery',ordesummeryGET)
+      .get('/canselorder',canselorderPOST)
 
       
 

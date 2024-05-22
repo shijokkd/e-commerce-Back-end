@@ -99,10 +99,6 @@ module.exports = {
         try{ 
             const id = await req.params.productid
             const idproduct = await productmodel.findById(id)
-            
-            
-
-
             res.render('productedit',{idproduct,category})
 
 
@@ -204,7 +200,67 @@ module.exports = {
             console.error(error);
             res.status(500).send('Internal Server Error');
         }
+    },
+    categorybaseGET:async (req,res)=>{
+        const data = req.query.category
+        const banner = await bannermodel.find()
+        
+        console.log('lolipop');
+        console.log(req.body);
+      
+        try{
+            const product = await productmodel.find({category:data});
+            res.render('userhomepages/filterpage',{product,banner})
+           
+        }catch{
+
+        }
+    },
+
+    pricebaseGET:async (req,res)=>{
+        console.log('hhfffhfhfhfhfhfh');
+        try{
+            const banner = await bannermodel.find()
+            const price = req.query.price
+            if (price == 1){
+            var product = await productmodel.find().sort({offerprice:1})
+            }else{
+                var product = await productmodel.find().sort({offerprice:-1})
+            }
+
+          
+            res.render('userhomepages/filterpage',{product,banner})
+
+
+        }catch{
+
+        }
+    },
+    serchbaseGET: async (req,res)=>{
+        const data = req.body.search            
+        const banner = await bannermodel.find()
+
+        try{
+            console.log('hai');
+            console.log(data);
+            
+            const product = await productmodel.find({
+                $or: [
+                  { category: { $regex: data, $options: "i" } },
+                  { subcategory: { $regex: data, $options: "i" } },
+                  { productname:{ $regex: data, $options: "i"}}
+                ]
+              });
+
+              res.render('userhomepages/filterpage',{product,banner})
+
+        
+
+        }catch{
+
+        }
     }
+
     
        
 

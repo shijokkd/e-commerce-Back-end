@@ -44,7 +44,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
-                                        <% cartdata[0].productID.forEach((data =>{ %>
+                                        <% cartdata.productID.forEach((data =>{ %>
                                         <tr class="rows<%= data.id._id %>">
                                             <td>
                                                 <div class="img">
@@ -52,18 +52,18 @@
                                                     <p><%= data.id.productname %></p>
                                                 </div>
                                             </td>
-                                            <td class="Price"> ₹ <%= data.id.offerprice %></td>
+                                            <td class="Price"> ₹ <span class="newPrice<%= data.id._id %>"><%= data.id.offerprice %></span></td>
                                             <td>
                                                 <div class="qty" style="background-color: white;">
                                                 
-                                                    <input class="quantity" type="number" name="quantity " onchange="quantityUpdate(this.value,'<%= data.id._id %>')" value="<%= data.quantity %>" min="1" max="<%= data.id.stock %>">
+                                                    <input class="quantity<%= data.id._id %>" type="number" name="quantity " onchange="quantityUpdate(this.value,'<%= data.id._id %>')" value="<%= data.quantity %>" min="1" max="<%= data.id.stock %>">
                                                     
                                                 </div>
                                             </td>
-                                            <td class="total"></td>
+                                            <td class="total<%= data.id._id %>"><%=data.id.offerprice * data.quantity %></td>
                                             <td><button onclick="confirmDelete('<%= data.id._id %>')"><i class="fa fa-trash"></i></button></td>
-                                            <%})) %>
                                         </tr>
+                                        <%})) %>
                                        
                                     </tbody>
                                 </table>
@@ -74,24 +74,21 @@
                         <div class="cart-page-inner">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="coupon">
-                                        <input type="text" placeholder="Coupon Code">
-                                        <button>Apply Code</button>
-                                    </div>
+                                   
                                 </div>
                                 <div class="col-md-12">
                                     <div class="cart-summary">
                                         <div class="cart-content">
                                             <h1>Cart Summary</h1>
-                                            <p>Sub Total<span>$99</span></p>
-                                            <p>Shipping Cost<span>$1</span></p>
-                                            <p>Gst<span>5%</span></p>
-                                            <h2>Grand Total<span>$100</span></h2>
+                                            <p>Sub Total   ₹<span class="subtotal"><%= totalPrice %></span></p>
+                                            <p>Shipping Cost   ₹<span class="shipcost">50</span></p>
+                                            <p>Gst . 5%<span class="gst"><%= totalPrice*5/100 %></span></p>
+                                            <h2>Grand Total   ₹<span class="grandtotal"><%= totalPrice+(totalPrice*5/100)+50 %></span></h2>
                                         </div>
                                         <div class="cart-btn">
-                                            <button>Clear cart</button>
-                                            <button>Checkout</button>
-                                            <button>back to home</button>
+
+                                            <a href="/checkout"><button >Checkout</button></a>
+                                            <a href="/home"><button >home</button></a>
                                         </div>
                                         
                                     </div>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card">
+        <div class="title">Purchase Reciept</div>
+        <div class="info">
+            <div class="row">
+                <div class="col-7">
+                    <span id="heading">Date</span><br>
+                    <span id="details"><%=ordersummery.currentdate%></span>
+                </div>
+                <div class="col-5 pull-right">
+                    <span id="heading">Order No.</span><br>
+                    <span id="details">012j1gvs356c</span>
+                </div>
+            </div>      
+        </div>      
+        <div class="pricing">
+            <% ordersummery.productid.forEach((product) => { %>
+            <div class="row">
+                <div class="col-9">
+                    <span id="name">  <div class="col-2"><img class="img-fluid" src="img/<%= product.imagepath[0] %>"></div><%= product.productname %></span>  
+                </div>
+                <div class="col-3"><br>
+                    <span id="price"><%= product.price %></span>
+                </div>
+            </div>
+            <% }) %>
+            <div class="row">
+                <div class="col-9">
+                    <span id="name">shiping charge</span>
+                </div>
+                <div class="col-3">
+                    <span id="price">50.00</span>
+                </div>
+            </div>
+        </div>
+        <div class="total">
+            <div class="row">
+                <div class="col-9"></div>
+                <br><br>
+                <div class="col-3"><big><%= ordersummery.checkoutid.totalamount %></big></div>
+            </div>
+            <div class="tracking">
+                <div class="title">Tracking Order</div>
+            </div>
+        </div>
+        <div class="progress-track">
+            <ul id="progressbar">
+                <% if (ordersummery.status === 'placed') { %>
+                    <center><li>PLACED</li></center>
+                <% } else if (ordersummery.status === 'delivered') { %>
+                    <center><li>DELIVERED</li></center>
+                <% } else if (ordersummery.status === 'Shipped') { %>
+                    <center><li>Shipped</li></center>
+                <% } else if (ordersummery.status === 'on the way') { %>
+                    <center><li>ON THE WAY</li></center>
+                <% } else if ( ordersummery.status == 'return' ){ %>
+                    <center><li>Product return. expected to reach in a few days</li></center>
+                <% } %>
+            </ul>
+        </div>
+        
+        
+
+        <div class="footer">
+            <h3>shipping address</h3><br>
+            <h6><%= ordersummery.checkoutid.shiping_adderss[0].address%> ,<%= ordersummery.checkoutid.shiping_adderss[0].place %></h6>
+            <h6><%= ordersummery.checkoutid.shiping_adderss[0].city%>, kerala, <%= ordersummery.checkoutid.shiping_adderss[0].country%></h6>
+            <h6>pincode : <%= ordersummery.checkoutid.shiping_adderss[0].zipcode%></h6>
+            
+        </div>
+    </div>
+    <!-- External JavaScript libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+<!-- External CSS stylesheet -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    
+    <style>
+        body{
+    background: #ddd3;
+    height: auto;
+    vertical-align: middle;
+    display: flex;
+    font-family: Muli;
+    font-size: 16px;    
+}
+.card{
+    margin: auto;
+    width: 50%;
+    max-width:600px;
+    padding: 4vh 0;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top: 3px solid rgb(252, 103, 49);
+    border-bottom: 3px solid rgb(252, 103, 49);
+    border-left: none;
+    border-right: none;
+}
+@media(max-width:768px){
+    .card{
+        width: 90%;
+    }
+}
+.title{
+    color: rgb(252, 103, 49);
+    font-weight: 600;
+    margin-bottom: 2vh;
+    padding: 0 8%;
+    font-size: initial;
+}
+#details{
+    font-weight: 400;
+}
+.info{
+    padding: 5% 8%;
+}
+.info .col-5{
+    padding: 0;
+}
+#heading{
+    color: grey;
+    line-height: 6vh;
+}
+.pricing{
+    background-color: #ddd3;
+    padding: 2vh 8%;
+    font-weight: 400;
+    line-height: 2.5;
+}
+.pricing .col-3{
+    padding: 0;
+}
+.total{
+    padding: 2vh 8%;
+    color: rgb(252, 103, 49);
+    font-weight: bold;
+}
+.total .col-3{
+    padding: 0;
+}
+.footer{
+    padding: 0 8%;
+    font-size: x-small;
+    color: black;
+}
+.footer img{
+    height: 5vh;
+    opacity: 0.2;
+}
+.footer a{
+    color: rgb(252, 103, 49);
+}
+.footer .col-10, .col-2{
+    display: flex;
+    padding: 3vh 0 0;
+    align-items: center;
+}
+.footer .row{
+    margin: 0;
+}
+#progressbar {
+    margin-bottom: 3vh;
+    overflow: hidden;
+    color: rgb(252, 103, 49);
+    padding-left: 0px;
+    margin-top: 3vh
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: x-small;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: rgb(160, 159, 159);
+}
+
+#progressbar #step1:before {
+    content: "";
+    color: rgb(252, 103, 49);
+    width: 5px;
+    height: 5px;
+    margin-left: 0px !important;
+    /* padding-left: 11px !important */
+}
+
+#progressbar #step2:before {
+    content: "";
+    color: #fff;
+    width: 5px;
+    height: 5px;
+    margin-left: 32%;
+}
+
+#progressbar #step3:before {
+    content: "";
+    color: #fff;
+    width: 5px;
+    height: 5px;
+    margin-right: 32% ; 
+    /* padding-right: 11px !important */
+}
+
+#progressbar #step4:before {
+    content: "";
+    color: #fff;
+    width: 5px;
+    height: 5px;
+    margin-right: 0px !important;
+    /* padding-right: 11px !important */
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: auto;
+    z-index: -1;
+    margin-bottom: 1vh;
+}
+
+#progressbar li:after {
+    content: '';
+    height: 2px;
+    background: #ddd;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 2vh;
+    top: 1px;
+    z-index: 1;
+}
+.progress-track{
+    padding: 0 8%;
+}
+#progressbar li:nth-child(2):after {
+    margin-right: auto;
+}
+
+#progressbar li:nth-child(1):after {
+    margin: auto;
+}
+
+#progressbar li:nth-child(3):after {
+    float: left;
+    width: 68%;
+}
+#progressbar li:nth-child(4):after {
+    margin-left: auto;
+    width: 132%;
+}
+
+#progressbar  li.active{
+    color: black;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: rgb(252, 103, 49);
+}
+    </style>
+</body>
+</html>

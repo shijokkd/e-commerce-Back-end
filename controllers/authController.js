@@ -274,8 +274,10 @@ module.exports = {
 
     
             if (passwordMatch) {
+                console.log(user);
                 req.session.email = user.email
-                req.session.id =user.id;
+                req.session.id1 =user._id;
+                req.session.user =user;
                 res.redirect("/home");
             } else {
                 return res.send('Wrong password');

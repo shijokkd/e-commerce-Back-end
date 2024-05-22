@@ -18,8 +18,9 @@ const profileschema  = new mongoose.Schema({
         type:Number,
     },
     userSignupDta : {
-        type:String
-    }
+        type:mongoose.Schema.Types.ObjectId
+    },
+    
     
 });
 

@@ -29,8 +29,11 @@ const{
 const {
     adminSideUserListGET,
     adminHOMEGET,
-    
+    admincouponADDget,
     adminCouponGET,
+    admincouponADDpost,
+    adminOrderhistoryGET,
+    productstatusPOST
     
 
 } = require('../controllers/adminController')
@@ -66,6 +69,10 @@ router.get( '/login',adminloginGET)
     .post('/banneradd',upload.single('image'),bannerAddPost)
     .delete('/banner', bannerDeletePost)
     .get('/coupon',adminCouponGET)
+    .get('/couponadd',admincouponADDget)
+    .post('/couponadd',admincouponADDpost)
+    .get('/orderhistory',adminOrderhistoryGET)
+    .post('/productstatus',productstatusPOST)
 
  
          

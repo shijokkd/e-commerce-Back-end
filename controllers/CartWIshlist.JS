@@ -79,21 +79,29 @@ module.exports = {
 
             const emailll= req.session.email
             const datapass = await signupmodel.find({email:emailll});
-            console.log(datapass)
             const data = datapass[0]._id
-            console.log(data)
-            const cartdata = await cartmodel.find({userID:data}).populate('productID.id');
-    
+            const cartdata = await cartmodel.findOne({userID:data}).populate('productID.id');
             console.log(cartdata);
+            
+          
+            let totalPrice = 0;
+            if (cartdata && cartdata.productID) {
+                cartdata.productID.forEach(item => {
+                    totalPrice += item.id.offerprice * item.quantity;
+                });
+            }
+            const total= (((totalPrice*5)/100)+50)
+                req.session.price = totalPrice +total 
+                console.log(req.session.price );
     
-            res.render('userhomepages/cart',{cartdata}) 
+            res.render('userhomepages/cart',{cartdata,totalPrice}) 
         }catch{
             res.send('sorry your cart not working')
             
         }
     },
     cartPOST: async (req, res) => {
-        try {
+        try { 
             const productId = req.query.id;
             const email = req.session.email;
             console.log(email);
@@ -148,9 +156,6 @@ module.exports = {
         const userdata = await signupmodel.find({ email: email });
         const data = new mongoose.Types.ObjectId(userdata[0]._id);
 
-        console.log(data);
-        console.log(productid);
-        console.log(value);
     
         try {
             const updatedCart =  await cartmodel.findOneAndUpdate(

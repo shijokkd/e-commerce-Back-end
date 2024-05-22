@@ -35,6 +35,7 @@ function confirmDelete(id) {
 
 
 async function quantityUpdate(id, quantity) {
+    
  
     try {
         const response = await axios.post('/quantityUpdate', { id: quantity, quantity: id }, {
@@ -44,11 +45,23 @@ async function quantityUpdate(id, quantity) {
         });
 
         console.log(response);
-        if (!response.data) {
+        if (!response.data) {   
             throw new Error("Error updating quantity");
         }
         if (response.status === 200) {
-            
+            const total = document.querySelector(`.newPrice${quantity}`)
+            const totalPrice = total.innerHTML
+            console.log(totalPrice);
+            const quantity1 = document.querySelector(`.quantity${quantity}`).value 
+            document.querySelector(`.total${quantity}`).innerHTML = parseInt(totalPrice) * parseInt(quantity1)
+          console.log('dgfgsafdgagsa');
+            const subtotal= document.querySelector('.subtotal').innerHTML
+
+            console.log(subtotal);
+           const gst= document.querySelector('.gst')
+           gst.innerHTML = (parseInt(subtotal)*5)/100
+
+
         } else {
             throw new Error("Quantity update failed: " + response.statusText);
         }

@@ -1,0 +1,64 @@
+<%- include("homePgeHedder") -%>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<h1>product</h1>
+<div class="maincontainer">
+   <% product.forEach(datas =>{ %>
+   <div class="productcard">
+     <a href='/products/<%= datas._id %>'> <div class="imgsection" >
+         <img src="img/<%= datas.imagepath[0] %>" alt="soory "  width="95%" height="95%" >
+      </div>
+      <div class="contentsection">
+         <h4><%= datas.productname %></h4>
+        <p class="pricetab"><%= datas.price %></p>
+        <p><%= datas.subcategory %></p>
+      </a>
+        <div class="threebuton">
+    
+   
+      </div>
+   </div>  
+</div>
+<%    }) %>
+
+</div>
+<%- include("homePageFooter") -%>
+
+
+
+
+<style>
+    .maincontainer{
+      height: auto;
+      width: 100%;
+      background-color: antiquewhite;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items:last center;
+      gap: 20px;
+ 
+ 
+    }
+    .productcard{
+       height:30rem;
+       width: 20rem;
+       background-color: rgb(212, 150, 16);
+       border-radius: 3%;
+    }
+    .imgsection{
+       height: 70%;
+       width: 100%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+ 
+    }
+    .threebuton {
+       height: 15%;
+       width: 100%;
+       display: flex;
+       align-items: center;
+       justify-content: space-around;
+    }
+ </style>
